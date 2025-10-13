@@ -1,6 +1,6 @@
 import Header from "@/components/Header";
 import "./globals.css";
-// import { Analytics } from "@vercel/analytics/next";
+import { Analytics } from "@vercel/analytics/next";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Footer from "@/components/Footer";
@@ -40,7 +40,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        {/* <Analytics /> */}
+        <Analytics />
         <ToastContainer />
         <Header />
         <PageTransition>{children}</PageTransition>
