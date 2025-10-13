@@ -1,0 +1,599 @@
+/* app/globals.css - global styles for form and receipts */
+
+/* reset-ish */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+:root {
+  --green: rgb(2, 187, 2);
+  --blue-txt: #009dff;
+  --orangered: orangered;
+}
+body {
+  margin: 0;
+  font-family: Inter, Arial, sans-serif;
+  background: #fff;
+  color: #111;
+}
+input,
+textarea,
+select {
+  font-size: 16px;
+}
+/* Page container */
+.page {
+  max-width: 980px;
+  margin: 36px auto;
+  padding: 20px;
+}
+
+/* --- Form styles --- */
+.form-wrap {
+  background: #fff;
+  border: 1px solid #e6e9ef;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 24px;
+  box-shadow: 0 6px 18px rgba(18, 20, 30, 0.04);
+}
+
+.form-row {
+  margin-bottom: 12px;
+}
+label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+select,
+input[type="text"],
+input[type="number"] {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #d6dbe8;
+  border-radius: 6px;
+  background: #fff;
+}
+
+.radio-group {
+  display: flex;
+  gap: 12px;
+  margin: 10px 0;
+}
+.radio-group label {
+  font-weight: 500;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* button */
+.btn {
+  display: inline-block;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: 0;
+  background: #0b5fff;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+}
+.btn:active {
+  transform: translateY(1px);
+}
+.receipt {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  overflow: hidden;
+  margin: 0 auto;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.receipt.icici {
+  justify-content: flex-start;
+  gap: 1rem;
+}
+.receipt.icici .head,
+.receipt.paytm.failed .head {
+  background-color: orangered;
+  width: 100%;
+  height: 50px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+  padding-right: 1rem;
+}
+.receipt.icici .r-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.receipt.icici .logo {
+  height: 30px;
+  background-color: var(--orangered);
+  width: fit-content;
+  padding: 2px 5px;
+  display: flex;
+  align-self: center;
+  gap: 0.5rem;
+  align-items: center;
+  color: white;
+  border-radius: 2px;
+}
+.receipt.icici .logoo {
+  width: 20px;
+  height: 20px;
+}
+.receipt.icici .r-header svg {
+  border: 1px solid var(--green);
+  color: var(--green);
+  border-radius: 50%;
+  align-self: flex-start;
+  width: 35px;
+  height: 35px;
+  padding: 10px;
+}
+.receipt.icici .r-header .status {
+  text-transform: capitalize;
+  font-size: 1.3rem;
+  color: rgb(27, 27, 27);
+}
+.receipt.icici .r-header .ref {
+  color: var(--blue-txt);
+}
+.receipt.icici .r-body {
+  display: flex;
+  flex-direction: column;
+  color: rgb(49, 49, 49);
+  width: 90%;
+  margin: 0 auto;
+}
+.receipt.icici .r-body p {
+  padding: 20px 0;
+}
+.receipt.icici .r-body p .blue {
+  color: var(--blue-txt);
+}
+.receipt.icici .r-body p strong {
+  width: 180px;
+  display: inline-block;
+}
+.receipt.icici .r-body p:not(:last-child) {
+  border-bottom: 1px solid rgb(205, 204, 204);
+}
+.receipt.icici .r-footer button {
+  display: flex;
+  background-color: rgb(15, 15, 98);
+  width: 90%;
+  margin: auto;
+  padding: 10px;
+  border-radius: 6px;
+  color: white;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+.receipt .powered {
+  text-transform: uppercase;
+  display: flex;
+  height: 40px;
+  width: 100%;
+  margin: 0 auto;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.receipt .powered img {
+  height: 100%;
+  width: 85px;
+}
+.receipt .powered .small {
+  font-size: 0.6rem;
+  color: grey;
+}
+.receipt.icici .bottom {
+  background-color: orangered;
+  height: 20px;
+}
+
+/* For Pay Tm===================== */
+.receipt.paytm {
+  position: relative;
+}
+.receipt.paytm .logola {
+  width: 70px;
+  height: 70px;
+  align-self: center;
+}
+.receipt.paytm .logola img {
+  width: 100%;
+  height: 100%;
+}
+.receipt.paytm .cons {
+  border-top: 5px solid gray;
+  width: 90%;
+  margin: auto;
+  max-width: 500px;
+  margin-top: 1rem;
+}
+.receipt.paytm .cons .cons-box {
+  display: flex;
+  position: relative;
+  box-shadow: 0 6px 18px rgba(18, 20, 30, 0.2);
+  width: 98%;
+  margin: auto;
+  padding: 40px 20px;
+  gap: 1rem;
+  background-color: white;
+  flex-direction: column;
+}
+.receipt.paytm .cons .cons-box::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transform: translateY(100%);
+  width: 100%;
+  height: 2ch; /* deeper spikes */
+  background: inherit;
+  clip-path: polygon(
+    0 0,
+    5% 100%,
+    10% 0,
+    15% 100%,
+    20% 0,
+    25% 100%,
+    30% 0,
+    35% 100%,
+    40% 0,
+    45% 100%,
+    50% 0,
+    55% 100%,
+    60% 0,
+    65% 100%,
+    70% 0,
+    75% 100%,
+    80% 0,
+    85% 100%,
+    90% 0,
+    95% 100%,
+    100% 0
+  );
+}
+.receipt.paytm .cons .cons-box .right {
+  width: 50px;
+  height: 50px;
+  background-color: #e8f6ff;
+  padding: 10px;
+  border-radius: 50%;
+}
+.receipt.paytm .cons .cons-box img {
+  width: 100%;
+  height: 100%;
+}
+.receipt.paytm .powered,
+.receipt.geepay .powered {
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.receipt.paytm .cons .cons-box .after-con:not(:last-child) {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-weight: bold;
+}
+.receipt.paytm .cons .cons-box .after-con:last-child {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.receipt.paytm .cons .cons-box .after-con:nth-child(1) {
+  border-bottom: 1px solid gray;
+  padding-bottom: 1rem;
+}
+.receipt.paytm .cons .cons-box .after-con p:nth-child(2) {
+  color: gray;
+}
+.receipt.paytm .price-box {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  /* background-color: #00baf2; */
+  background: #e8f6ff;
+  border-bottom: 10px solid #003366; /* blue bottom bar */
+  box-shadow: 0 -10px 0 #2fa3f1 inset;
+  width: 90%;
+  margin: 0 auto;
+  max-width: 500px;
+  border-radius: 10px;
+  gap: 1rem;
+  align-items: center;
+  font-weight: bold;
+}
+.receipt.paytm .price-box svg {
+  color: green;
+}
+.receipt.paytm .price-box .status {
+  font-size: 1.5rem;
+}
+.receipt.paytm .price-box .price {
+  font-size: 2rem;
+  margin: 0;
+}
+.receipt.paytm .price-box .dets {
+  color: gray;
+  font-size: 0.8rem;
+}
+
+/* For GeePay ================================ */
+.receipt.geepay {
+  justify-content: space-around;
+  width: 90%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+}
+
+.receipt.geepay .r-header {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  gap: 1rem;
+}
+.receipt.geepay .r-header p {
+  text-align: center;
+}
+.receipt.geepay .r-header p.price {
+  font-size: 2.4rem;
+}
+.receipt.geepay .r-header p.semi {
+  font-size: 1.5rem;
+}
+.receipt.geepay .r-header svg {
+  color: #0b5fff;
+  width: 100px;
+  align-self: center;
+  height: 100px;
+}
+.receipt.geepay.failed .r-header svg {
+  color: orangered;
+}
+.receipt.geepay .r-body {
+  display: flex;
+  flex-direction: column;
+
+  text-align: center;
+}
+.receipt.geepay .r-footer {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  bottom: 100px;
+  gap: 3rem;
+}
+.receipt.geepay .r-footer > div {
+  display: flex;
+  gap: 1rem;
+}
+.receipt.geepay .r-footer button {
+  padding: 10px 15px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.receipt.geepay .r-footer button.blue {
+  background-color: #0b5fff;
+  border: none;
+  color: white;
+}
+.receipt.geepay .r-footer button:not(blue) {
+  color: #0248c9;
+  background-color: white;
+}
+.gray {
+  color: gray;
+}
+/* For Failed ========================== */
+/* GEEPAY ========================= */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 50;
+  opacity: 1;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.receipt.geepay.failed .r-header {
+  margin-top: 0px;
+  position: relative;
+  top: -100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.receipt.geepay.failed .r-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 55;
+  background-color: white;
+}
+.receipt.geepay.failed .r-footer ul {
+  padding: 20px;
+  padding-left: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.receipt.geepay.failed .r-footer .buts {
+  position: relative;
+  display: flex;
+  border-top: 1px solid gray;
+  justify-content: space-around;
+}
+.receipt.geepay.failed .r-footer .buts::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 100%;
+  width: 2px;
+  background-color: gray;
+}
+.receipt.geepay.failed .r-footer .buts button {
+  border: none;
+  padding: 20px 10px;
+}
+
+/* ICICI================== */
+.receipt.icici.failed .head,
+.receipt.paytm.failed .head {
+  justify-content: space-between;
+  padding: 0 1rem;
+}
+.receipt.icici.failed .head svg,
+.receipt.paytm.failed .head svg {
+  padding: 0;
+}
+.receipt.icici.failed .con-alert {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  backdrop-filter: blur(4px);
+  z-index: 55;
+  max-width: 320px;
+  width: 80%;
+  text-align: center;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: auto;
+}
+.receipt.icici.failed {
+  justify-content: flex-start;
+}
+.receipt.icici.failed .r-header {
+  text-align: center;
+  padding: 20px;
+  color: rgb(76, 76, 76);
+}
+.receipt.icici.failed .r-body {
+  color: gray;
+}
+.receipt.icici.failed .r-body p {
+  padding: 10px 0;
+}
+.receipt.icici.failed .r-body p span:not(.blue) {
+  width: 180px;
+  display: inline-block;
+}
+.receipt.icici.failed .con-alert > div {
+  padding: 20px;
+}
+.receipt.icici.failed .con-alert .bottom-b {
+  border-top: 1px solid gray;
+  color: #0b5fff;
+  text-align: center;
+}
+.receipt.paytm.failed {
+  display: flex;
+  flex-direction: column;
+}
+.receipt.paytm.failed .head .flex {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+}
+.receipt.paytm.failed .price-box {
+  position: relative;
+  top: 0;
+  background: #e8f6ff;
+  height: 220px;
+  border-bottom: none;
+  box-shadow: none;
+  width: 100%;
+}
+.receipt.paytm.failed .price-box svg {
+  width: 70px;
+  height: 70px;
+  color: orangered;
+}
+.receipt.paytm.failed .logo-p {
+  width: 70px;
+  height: 70px;
+}
+.receipt.paytm.failed .logo-p img {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+}
+.receipt.paytm.failed .box {
+  border: 2px dotted gray;
+  border-bottom: 0;
+  border-left: 0;
+  font-size: 14px;
+  border-right: 0;
+  border-spacing: 5px;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+}
+.receipt.paytm.failed .box .up {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  margin: auto;
+  padding: 20px 0;
+}
+.receipt.paytm.failed .box .up:first-child {
+  border-bottom: 1px solid gray;
+  padding: 20px;
+}
+.left,
+.right,
+.rightn {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.receipt.paytm.failed .box .rightn {
+  width: 90%;
+  margin: auto;
+  padding-bottom: 20px;
+  border-bottom: 1px solid gray;
+}
+.logo-p {
+  position: absolute;
+  top: 0;
+  border: 2px dotted gray;
+  border-top: 0;
+  border-right: 0;
+  border-left: 0;
+  border-radius: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #e8f6ff;
+}
+@media (width: 500px) {
+  .receipt.paytm .price-box .status {
+    font-size: 1.5rem;
+  }
+}
