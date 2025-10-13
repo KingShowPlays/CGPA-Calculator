@@ -1,4 +1,5 @@
 "use client";
+import { toastConfirm } from "@/components/toastConfirm";
 import React, { useEffect, useRef, useState } from "react";
 
 export default function Page() {
@@ -180,7 +181,19 @@ export default function Page() {
       alert("Share failed");
     }
   }
-
+  async function handleTab(e) {
+    e.preventDefault();
+    const confirm = await toastConfirm(
+      "Would you also like to view it in a table format ?"
+    );
+    if (!confirm) {
+      setShowTableBox(false);
+      setTableVisible(false);
+      return;
+    }
+    calculateFinal();
+    setShowTableBox(true);
+  }
   // show/hide tab box helper
   useEffect(() => {
     if (showTableBox) {
@@ -340,37 +353,12 @@ export default function Page() {
         <button
           id="final"
           onClick={(e) => {
-            e.preventDefault();
-            setShowTableBox(true);
+            handleTab(e);
           }}
         >
           {"Calculate CGPA"}
         </button>
-        <div className={`tabViewBox ${showTableBox ? "show-tabBox" : ""}`}>
-          <p>Would you also like to view it in a table format ?</p>
-          <div>
-            <button
-              className="noView"
-              onClick={(e) => {
-                e.preventDefault();
-                setShowTableBox(false);
-                setTableVisible(false);
-              }}
-            >
-              No
-            </button>
-            <button
-              className="yesView"
-              onClick={(e) => {
-                e.preventDefault();
-                calculateFinal();
-                setShowTableBox(false);
-              }}
-            >
-              Yes
-            </button>
-          </div>
-        </div>
+
         <p id="gpa">
           Your CGPA is : <span className="gpa-final">{finalCgpa}</span>
         </p>
@@ -519,21 +507,6 @@ export default function Page() {
           &uarr;
         </button>
       </div>
-
-      <footer>
-        <p>
-          &copy; Created by{" "}
-          <a href="https://kingsworks.vercel.app">KingShowPlays</a>, 2025
-        </p>
-        <a href="mailto:davinateee@gmail.com">
-          <img
-            src="/fontawesome/svgs/regular/address-card.svg"
-            alt="address-card"
-            className="address"
-          />
-          Inbox Me
-        </a>
-      </footer>
     </main>
   );
 }

@@ -438,7 +438,48 @@ footer p {
     font-size: 18px;
   }
 }
-
+.toast-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+}
+.toast-container span {
+  font-size: 1.2rem;
+  text-align: center;
+}
+.toast-container .con {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+.toast-container .con button {
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  border: none;
+  cursor: pointer;
+  width: 100px;
+}
+.toast-container .con button.accept {
+  background-color: rgba(255, 0, 0, 0.9);
+  transition: 0.3s;
+}
+.toast-container .con button.reject {
+  background-color: rgba(0, 128, 0, 0.9);
+  transition: 0.3s;
+}
+.toast-container .con button.accept:hover {
+  transform: scale(1.1);
+  background-color: rgba(255, 0, 0, 1);
+}
+.toast-container .con button.reject:hover {
+  transform: scale(1.1);
+  background-color: rgba(0, 128, 0, 1);
+}
 .table-container {
   width: 100%;
   overflow-x: auto;
