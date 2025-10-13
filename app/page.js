@@ -199,519 +199,6 @@ export default function Page() {
 
   return (
     <main>
-      <style jsx global>{`
-        /* pasted globals.css (converted) */
-        :root {
-          --Grey: hsl(0, 0%, 20%);
-          --Dark-Grey: hsl(0, 0%, 12%);
-        }
-        html {
-          scroll-behavior: smooth;
-        }
-        * {
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
-        }
-        body {
-          font-family: "Franklin Gothic Medium", "Arial Narrow", Arial,
-            sans-serif;
-          background-color: rgb(246, 243, 243);
-          width: 90%;
-          margin: auto;
-        }
-        p.logo {
-          font-size: 20px;
-        }
-        header {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 20px;
-          min-height: 70px;
-        }
-        .star {
-          height: 30px;
-          width: 30px;
-        }
-        .showcase {
-          text-align: center;
-          margin: 30px 0px;
-          margin-top: 10px;
-        }
-        .form-1,
-        .form-2,
-        .form-3,
-        .form-4,
-        .form-5,
-        .form-6 {
-          display: flex;
-          flex-direction: column;
-          gap: 10px;
-          width: 100%;
-          margin: auto;
-          margin-bottom: 40px;
-        }
-        .head {
-          text-align: center;
-          font-weight: bolder;
-          font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
-            sans-serif;
-          text-decoration: underline;
-        }
-        .title {
-          margin: 20px 0px;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-        }
-        .title p {
-          background-color: var(--Dark-Grey);
-          color: white;
-          padding: 15px;
-          border-radius: 10px;
-          font-weight: normal;
-          font-size: 16px;
-        }
-        .row {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-        }
-        .result {
-          position: relative;
-          display: flex;
-          gap: 10px;
-          align-items: center;
-          justify-content: space-between;
-        }
-        .score {
-          padding: 10px;
-          font-size: 20px;
-        }
-        input {
-          width: 70%;
-          border-radius: 10px;
-        }
-        button {
-          padding: 10px;
-          background-color: black;
-          color: white;
-          text-align: center;
-          border-radius: 7px;
-          font-size: 18px;
-          border: none;
-          transition: 0.3s;
-          cursor: pointer;
-        }
-        button:hover,
-        button:active {
-          transform: scale(1.1);
-        }
-        .cgpa {
-          text-align: center;
-          margin: 20px 0px;
-        }
-        #final {
-          border-top-right-radius: 0;
-          border-bottom-right-radius: 0;
-          width: 25%;
-        }
-        .tabViewBox {
-          position: absolute;
-          left: 50%;
-          background-color: white;
-          width: 350px;
-          padding: 20px;
-          border-radius: 20px;
-          border: 2px solid red;
-          transform: translateX(-50%);
-          margin: auto;
-          display: flex;
-          gap: 1em;
-          justify-content: center;
-          align-items: center;
-          flex-direction: column;
-          opacity: 0;
-          pointer-events: none;
-          visibility: hidden;
-          transition: 0.3s;
-        }
-        .show-tabBox {
-          opacity: 1;
-          pointer-events: visible;
-          visibility: visible;
-        }
-        .tabViewBox > p {
-          text-align: center;
-        }
-        .tabViewBox div {
-          display: flex;
-          align-items: center;
-          gap: 1em;
-        }
-        .tabViewBox button {
-          width: 50px;
-        }
-        #gpa {
-          background-color: black;
-          color: white;
-          width: 70%;
-          padding: 10px;
-          border-top-right-radius: 10px;
-        }
-        .deg {
-          margin: 20px 0px 0px 0px;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          gap: 10px;
-        }
-        #degree {
-          font-size: 20px;
-          font-family: Verdana, Geneva, Tahoma, sans-serif;
-          font-weight: bold;
-          background-color: yellow;
-          border-radius: 10px;
-          text-transform: uppercase;
-        }
-        #clear {
-          background-color: rgb(255, 0, 0, 0.9);
-        }
-        .table-view {
-          margin: auto;
-          margin-top: 2em;
-          display: none;
-          justify-content: center;
-          width: 100%;
-          opacity: 0;
-          padding: 10px;
-          transition: 0.3s;
-        }
-        .show-table {
-          display: flex;
-          opacity: 1;
-        }
-        .table-head > td:not(:nth-child(2)) {
-          font-size: 2em;
-        }
-        .close-table {
-          font-size: 2.5em;
-          cursor: pointer;
-          transition: 0.3s;
-        }
-        .close-table:hover {
-          background-color: yellow;
-          color: red;
-        }
-        th,
-        td {
-          text-align: center;
-          padding: 10px;
-        }
-        th {
-          background-color: yellow;
-          font-size: 1.5em;
-        }
-        td {
-          font-size: 1.1em;
-        }
-        .semesters > td {
-          background-color: red;
-          color: white;
-        }
-        th,
-        td {
-          border: 2px solid black;
-        }
-        pre {
-          background-color: rgb(255, 249, 241);
-          margin: 20px 0px;
-          border-radius: 10px;
-          box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-          text-align: center;
-          padding: 10px;
-        }
-        footer a:hover {
-          transform: scale(1.1);
-        }
-        a .address {
-          width: 30px;
-          height: 30px;
-        }
-        #formone,
-        #formtwo,
-        #formthree,
-        #formfour,
-        #formfive,
-        #formsix {
-          display: flex;
-          font-size: 1.3em;
-          justify-content: center;
-          align-items: center;
-          cursor: pointer;
-          transition: 0.3s;
-        }
-        :is(
-            #formone,
-            #formtwo,
-            #formthree,
-            #formfour,
-            #formfive,
-            #formsix
-          ):hover {
-          transform: scale(1.05);
-        }
-        :is(
-            #formone,
-            #formtwo,
-            #formthree,
-            #formfour,
-            #formfive,
-            #formsix
-          ):hover
-          + .mypointer {
-          padding-left: 5px;
-        }
-        .point {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          gap: 0.3em;
-        }
-        .mypointer {
-          cursor: pointer;
-          font-size: 2em;
-          transform: rotate(270deg);
-          color: black;
-          transition: 0.3s;
-        }
-        .mypointer:hover {
-          transform: rotate(360deg);
-          color: rgb(15, 13, 13);
-        }
-        .current-pointer {
-          transform: rotate(90deg);
-          color: rgb(71, 71, 71);
-        }
-        .form-1,
-        .form-2,
-        .form-3,
-        .form-4,
-        .form-5,
-        .form-6 {
-          height: 0;
-          opacity: 0;
-          pointer-events: none;
-          transition: 0.3s;
-        }
-        .form-show {
-          height: auto;
-          opacity: 1;
-          pointer-events: visible;
-        }
-        .btn {
-          position: fixed;
-          bottom: 50px;
-          left: 20px;
-          background: conic-gradient(rgb(19, 177, 239) 0%, transparent 0%);
-          border-radius: 50%;
-          width: 70px;
-          height: 70px;
-          z-index: 22;
-          visibility: hidden;
-          opacity: 0;
-          transition: 0.5s;
-        }
-        .up {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          background-color: white;
-          color: black;
-          border-radius: 50%;
-          width: 60px;
-          height: 60px;
-          border: none;
-          font-size: 2.8em;
-          text-align: center;
-          cursor: pointer;
-          visibility: hidden;
-          opacity: 0;
-          transition: 0.5s;
-        }
-        .show {
-          display: block;
-          visibility: visible;
-          opacity: 1;
-        }
-        footer {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          min-height: 70px;
-          color: black;
-          margin-top: 50px;
-          text-align: center;
-        }
-        footer a {
-          color: black;
-          display: flex;
-          align-items: center;
-          gap: 20px;
-          cursor: pointer;
-          transition: 0.3s;
-        }
-        footer p {
-          display: flex;
-          gap: 0.3em;
-        }
-        @media (max-width: 680px) {
-          #final {
-            width: 50%;
-          }
-          #gpa {
-            width: 50%;
-          }
-        }
-        @media (max-width: 400px) {
-          input {
-            width: 60%;
-          }
-          #gpa {
-            background: white;
-            color: black;
-          }
-        }
-        @media (max-width: 300px) {
-          .title p {
-            padding: 10px;
-            font-size: 14px;
-          }
-          .course,
-          .cu,
-          .score {
-            font-size: 14px;
-          }
-          input.score {
-            width: 50%;
-          }
-          #degree,
-          #clear,
-          #first,
-          #second,
-          #third,
-          #fourth,
-          #fifth,
-          #sixth,
-          #final {
-            font-size: 14px;
-          }
-        }
-        @media (max-width: 250px) {
-          .title p {
-            padding: 8px;
-            font-size: 10px;
-          }
-          .course,
-          .cu,
-          .score {
-            font-size: 10px;
-          }
-          #degree,
-          #clear,
-          #clear,
-          #first,
-          #second,
-          #third,
-          #fourth,
-          #fifth,
-          #sixth,
-          p,
-          #final {
-            font-size: 12px;
-          }
-        }
-        @media (max-width: 200px) {
-          pre,
-          p,
-          #degree,
-          #clear,
-          #first,
-          #second,
-          #third,
-          #fourth,
-          #fifth,
-          #sixth,
-          #final {
-            font-size: 10px;
-          }
-          .title > p {
-            background-color: transparent;
-            color: black;
-          }
-        }
-        @media (max-width: 150px) {
-          .deg {
-            flex-direction: column;
-          }
-          .head {
-            margin-bottom: 20px;
-          }
-          .row {
-            width: 110%;
-          }
-          pre,
-          .course {
-            font-size: 6px;
-          }
-          input.score {
-            width: 100%;
-          }
-          header {
-            justify-content: space-between;
-            gap: 0px;
-          }
-          .star {
-            height: 20px;
-            width: 20px;
-          }
-          .result {
-            flex-direction: column;
-          }
-        }
-        @media (max-width: 100px) {
-          .row {
-            flex-direction: column;
-            gap: 10px;
-          }
-          .title {
-            display: none;
-          }
-          h1,
-          p.logo {
-            font-size: 15px;
-          }
-          .course,
-          .cu,
-          .score,
-          .head {
-            font-size: 18px;
-          }
-        }
-      `}</style>
-
-      <header id="header">
-        <img
-          src="/fontawesome/svgs/regular/star.svg"
-          alt="star"
-          className="star"
-        />
-        <p className="logo">KingShow</p>
-      </header>
-
       <section className="showcase">
         <h1>Simple GPA calculator</h1>
         <code>
@@ -903,69 +390,76 @@ export default function Page() {
       </div>
 
       <table
-        className={`table-view ${tableVisible ? "show-table" : ""}`}
+        className={`cgpa-table ${tableVisible ? "show-table" : ""}`}
         ref={tableRef}
       >
-        <tbody>
-          <tr className="table-head">
-            <td colSpan={5}>Table View</td>
-            <td
-              className="close-table"
-              colSpan={1}
-              onClick={() => setTableVisible(false)}
-            >
-              &times;
-            </td>
+        <thead>
+          <tr>
+            <th colSpan={6} className="table-title">
+              Cumulative GPA Table
+              <span
+                className="close-table"
+                onClick={() => setTableVisible(false)}
+                title="Close Table"
+              >
+                &times;
+              </span>
+            </th>
           </tr>
-          <tr className="head-row">
+          <tr>
             <th colSpan={2}>Year 1</th>
             <th colSpan={2}>Year 2</th>
             <th colSpan={2}>Year 3</th>
           </tr>
           <tr className="semesters">
-            <td>1st Sem..</td>
-            <td>2nd Sem..</td>
-            <td>1st Sem..</td>
-            <td>2nd Sem..</td>
-            <td>1st Sem..</td>
-            <td>2nd Sem..</td>
+            <th>1st Sem</th>
+            <th>2nd Sem</th>
+            <th>1st Sem</th>
+            <th>2nd Sem</th>
+            <th>1st Sem</th>
+            <th>2nd Sem</th>
           </tr>
+        </thead>
+        <tbody>
           <tr>
-            <td className="fory11">{gpas[0]}</td>
-            <td className="fory12">{gpas[1]}</td>
-            <td className="fory21">{gpas[2]}</td>
-            <td className="fory22">{gpas[3]}</td>
-            <td className="fory31">{gpas[4]}</td>
-            <td className="fory32">{gpas[5]}</td>
+            <td>{gpas[0]}</td>
+            <td>{gpas[1]}</td>
+            <td>{gpas[2]}</td>
+            <td>{gpas[3]}</td>
+            <td>{gpas[4]}</td>
+            <td>{gpas[5]}</td>
           </tr>
-          <tr>
+
+          <tr className="section-head">
             <th colSpan={6}>CGPA Per Session</th>
           </tr>
           <tr>
-            <td className="cgfory1" colSpan={2}>
-              {(
-                (parseFloat(gpas[0]) || 0 + parseFloat(gpas[1]) || 0) / 2
-              ).toFixed(3)}
+            <td colSpan={2}>
+              {((parseFloat(gpas[0]) + parseFloat(gpas[1]) || 0) / 2).toFixed(
+                3
+              )}
             </td>
-            <td className="cgfory2" colSpan={2}>
-              {(
-                (parseFloat(gpas[2]) || 0 + parseFloat(gpas[3]) || 0) / 2
-              ).toFixed(3)}
+            <td colSpan={2}>
+              {((parseFloat(gpas[2]) + parseFloat(gpas[3]) || 0) / 2).toFixed(
+                3
+              )}
             </td>
-            <td className="cgfory3" colSpan={2}>
-              {(
-                (parseFloat(gpas[4]) || 0 + parseFloat(gpas[5]) || 0) / 2
-              ).toFixed(3)}
+            <td colSpan={2}>
+              {((parseFloat(gpas[4]) + parseFloat(gpas[5]) || 0) / 2).toFixed(
+                3
+              )}
             </td>
           </tr>
-          <tr>
+
+          <tr className="section-head">
             <th colSpan={6}>Final CGPA</th>
           </tr>
           <tr>
-            <td className="myCgpa" colSpan={6}>
+            <td className="final-cgpa" colSpan={6}>
               {finalCgpa}
             </td>
           </tr>
+
           <tr>
             <td colSpan={6}>
               <div className="convert">

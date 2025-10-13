@@ -1,599 +1,578 @@
-/* app/globals.css - global styles for form and receipts */
-
-/* reset-ish */
+/* pasted globals.css (converted) */
+:root {
+  --Grey: hsl(0, 0%, 20%);
+  --Dark-Grey: hsl(0, 0%, 12%);
+}
+html {
+  scroll-behavior: smooth;
+}
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
-}
-:root {
-  --green: rgb(2, 187, 2);
-  --blue-txt: #009dff;
-  --orangered: orangered;
+  box-sizing: border-box;
 }
 body {
-  margin: 0;
-  font-family: Inter, Arial, sans-serif;
-  background: #fff;
-  color: #111;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  background-color: rgb(246, 243, 243);
+  width: 90%;
+  margin: auto;
 }
-input,
-textarea,
-select {
+p.logo {
+  font-size: 20px;
+}
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  min-height: 70px;
+}
+.star {
+  height: 30px;
+  width: 30px;
+}
+.showcase {
+  text-align: center;
+  margin: 30px 0px;
+  margin-top: 10px;
+}
+.form-1,
+.form-2,
+.form-3,
+.form-4,
+.form-5,
+.form-6 {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin: auto;
+  margin-bottom: 40px;
+}
+.head {
+  text-align: center;
+  font-weight: bolder;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  text-decoration: underline;
+}
+.title {
+  margin: 20px 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.title p {
+  background-color: var(--Dark-Grey);
+  color: white;
+  padding: 15px;
+  border-radius: 10px;
+  font-weight: normal;
   font-size: 16px;
 }
-/* Page container */
-.page {
-  max-width: 980px;
-  margin: 36px auto;
-  padding: 20px;
-}
-
-/* --- Form styles --- */
-.form-wrap {
-  background: #fff;
-  border: 1px solid #e6e9ef;
-  border-radius: 10px;
-  padding: 20px;
-  margin-bottom: 24px;
-  box-shadow: 0 6px 18px rgba(18, 20, 30, 0.04);
-}
-
-.form-row {
-  margin-bottom: 12px;
-}
-label {
-  display: block;
-  font-weight: 600;
-  margin-bottom: 6px;
-  font-size: 14px;
-}
-select,
-input[type="text"],
-input[type="number"] {
-  width: 100%;
-  padding: 10px 12px;
-  border: 1px solid #d6dbe8;
-  border-radius: 6px;
-  background: #fff;
-}
-
-.radio-group {
+.row {
   display: flex;
-  gap: 12px;
-  margin: 10px 0;
-}
-.radio-group label {
-  font-weight: 500;
-  display: flex;
-  gap: 8px;
+  justify-content: space-between;
   align-items: center;
 }
-
-/* button */
-.btn {
-  display: inline-block;
-  padding: 10px 16px;
-  border-radius: 8px;
-  border: 0;
-  background: #0b5fff;
-  color: #fff;
-  font-weight: 700;
+.result {
+  position: relative;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+}
+.score {
+  padding: 10px;
+  font-size: 20px;
+}
+input {
+  width: 70%;
+  border-radius: 10px;
+}
+button {
+  padding: 10px;
+  background-color: black;
+  color: white;
+  text-align: center;
+  border-radius: 7px;
+  font-size: 18px;
+  border: none;
+  transition: 0.3s;
   cursor: pointer;
 }
-.btn:active {
-  transform: translateY(1px);
+button:hover,
+button:active {
+  transform: scale(1.1);
 }
-.receipt {
-  position: relative;
-  width: 100%;
-  max-width: 500px;
-  overflow: hidden;
-  margin: 0 auto;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-.receipt.icici {
-  justify-content: flex-start;
-  gap: 1rem;
-}
-.receipt.icici .head,
-.receipt.paytm.failed .head {
-  background-color: orangered;
-  width: 100%;
-  height: 50px;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 1rem;
-  padding-right: 1rem;
-}
-.receipt.icici .r-header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-}
-.receipt.icici .logo {
-  height: 30px;
-  background-color: var(--orangered);
-  width: fit-content;
-  padding: 2px 5px;
-  display: flex;
-  align-self: center;
-  gap: 0.5rem;
-  align-items: center;
-  color: white;
-  border-radius: 2px;
-}
-.receipt.icici .logoo {
-  width: 20px;
-  height: 20px;
-}
-.receipt.icici .r-header svg {
-  border: 1px solid var(--green);
-  color: var(--green);
-  border-radius: 50%;
-  align-self: flex-start;
-  width: 35px;
-  height: 35px;
-  padding: 10px;
-}
-.receipt.icici .r-header .status {
-  text-transform: capitalize;
-  font-size: 1.3rem;
-  color: rgb(27, 27, 27);
-}
-.receipt.icici .r-header .ref {
-  color: var(--blue-txt);
-}
-.receipt.icici .r-body {
-  display: flex;
-  flex-direction: column;
-  color: rgb(49, 49, 49);
-  width: 90%;
-  margin: 0 auto;
-}
-.receipt.icici .r-body p {
-  padding: 20px 0;
-}
-.receipt.icici .r-body p .blue {
-  color: var(--blue-txt);
-}
-.receipt.icici .r-body p strong {
-  width: 180px;
-  display: inline-block;
-}
-.receipt.icici .r-body p:not(:last-child) {
-  border-bottom: 1px solid rgb(205, 204, 204);
-}
-.receipt.icici .r-footer button {
-  display: flex;
-  background-color: rgb(15, 15, 98);
-  width: 90%;
-  margin: auto;
-  padding: 10px;
-  border-radius: 6px;
-  color: white;
+.cgpa {
   text-align: center;
-  align-items: center;
-  justify-content: center;
+  margin: 20px 0px;
 }
-.receipt .powered {
-  text-transform: uppercase;
-  display: flex;
-  height: 40px;
-  width: 100%;
-  margin: 0 auto;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+#final {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  width: 25%;
 }
-.receipt .powered img {
-  height: 100%;
-  width: 85px;
-}
-.receipt .powered .small {
-  font-size: 0.6rem;
-  color: grey;
-}
-.receipt.icici .bottom {
-  background-color: orangered;
-  height: 20px;
-}
-
-/* For Pay Tm===================== */
-.receipt.paytm {
-  position: relative;
-}
-.receipt.paytm .logola {
-  width: 70px;
-  height: 70px;
-  align-self: center;
-}
-.receipt.paytm .logola img {
-  width: 100%;
-  height: 100%;
-}
-.receipt.paytm .cons {
-  border-top: 5px solid gray;
-  width: 90%;
-  margin: auto;
-  max-width: 500px;
-  margin-top: 1rem;
-}
-.receipt.paytm .cons .cons-box {
-  display: flex;
-  position: relative;
-  box-shadow: 0 6px 18px rgba(18, 20, 30, 0.2);
-  width: 98%;
-  margin: auto;
-  padding: 40px 20px;
-  gap: 1rem;
-  background-color: white;
-  flex-direction: column;
-}
-.receipt.paytm .cons .cons-box::after {
-  content: "";
+.tabViewBox {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  transform: translateY(100%);
-  width: 100%;
-  height: 2ch; /* deeper spikes */
-  background: inherit;
-  clip-path: polygon(
-    0 0,
-    5% 100%,
-    10% 0,
-    15% 100%,
-    20% 0,
-    25% 100%,
-    30% 0,
-    35% 100%,
-    40% 0,
-    45% 100%,
-    50% 0,
-    55% 100%,
-    60% 0,
-    65% 100%,
-    70% 0,
-    75% 100%,
-    80% 0,
-    85% 100%,
-    90% 0,
-    95% 100%,
-    100% 0
-  );
-}
-.receipt.paytm .cons .cons-box .right {
-  width: 50px;
-  height: 50px;
-  background-color: #e8f6ff;
-  padding: 10px;
-  border-radius: 50%;
-}
-.receipt.paytm .cons .cons-box img {
-  width: 100%;
-  height: 100%;
-}
-.receipt.paytm .powered,
-.receipt.geepay .powered {
-  position: fixed;
-  bottom: 10px;
   left: 50%;
+  background-color: white;
+  width: 350px;
+  padding: 20px;
+  border-radius: 20px;
+  border: 2px solid red;
   transform: translateX(-50%);
+  margin: auto;
+  display: flex;
+  gap: 1em;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transition: 0.3s;
 }
-.receipt.paytm .cons .cons-box .after-con:not(:last-child) {
+.show-tabBox {
+  opacity: 1;
+  pointer-events: visible;
+  visibility: visible;
+}
+.tabViewBox > p {
+  text-align: center;
+}
+.tabViewBox div {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+.tabViewBox button {
+  width: 50px;
+}
+#gpa {
+  background-color: black;
+  color: white;
+  width: 70%;
+  padding: 10px;
+  border-top-right-radius: 10px;
+}
+.deg {
+  margin: 20px 0px 0px 0px;
   display: flex;
   justify-content: space-between;
-  gap: 1rem;
+  align-items: center;
+  gap: 10px;
+}
+#degree {
+  font-size: 20px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-weight: bold;
-}
-.receipt.paytm .cons .cons-box .after-con:last-child {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-.receipt.paytm .cons .cons-box .after-con:nth-child(1) {
-  border-bottom: 1px solid gray;
-  padding-bottom: 1rem;
-}
-.receipt.paytm .cons .cons-box .after-con p:nth-child(2) {
-  color: gray;
-}
-.receipt.paytm .price-box {
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  /* background-color: #00baf2; */
-  background: #e8f6ff;
-  border-bottom: 10px solid #003366; /* blue bottom bar */
-  box-shadow: 0 -10px 0 #2fa3f1 inset;
-  width: 90%;
-  margin: 0 auto;
-  max-width: 500px;
+  background-color: yellow;
   border-radius: 10px;
-  gap: 1rem;
-  align-items: center;
-  font-weight: bold;
+  text-transform: uppercase;
 }
-.receipt.paytm .price-box svg {
-  color: green;
-}
-.receipt.paytm .price-box .status {
-  font-size: 1.5rem;
-}
-.receipt.paytm .price-box .price {
-  font-size: 2rem;
-  margin: 0;
-}
-.receipt.paytm .price-box .dets {
-  color: gray;
-  font-size: 0.8rem;
+#clear {
+  background-color: rgb(255, 0, 0, 0.9);
 }
 
-/* For GeePay ================================ */
-.receipt.geepay {
-  justify-content: space-around;
-  width: 90%;
-  margin: auto;
-  display: flex;
-  align-items: center;
+pre {
+  background-color: rgba(255, 255, 255, 1);
+  margin: 20px 0px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  padding: 10px;
 }
-
-.receipt.geepay .r-header {
-  margin-top: 30px;
+footer a:hover {
+  transform: scale(1.1);
+}
+a .address {
+  width: 30px;
+  height: 30px;
+}
+#formone,
+#formtwo,
+#formthree,
+#formfour,
+#formfive,
+#formsix {
   display: flex;
-  flex-direction: column;
+  font-size: 1.3em;
   justify-content: center;
-
-  gap: 1rem;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.3s;
 }
-.receipt.geepay .r-header p {
+:is(#formone, #formtwo, #formthree, #formfour, #formfive, #formsix):hover {
+  transform: scale(1.05);
+}
+:is(#formone, #formtwo, #formthree, #formfour, #formfive, #formsix):hover
+  + .mypointer {
+  padding-left: 5px;
+}
+.point {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3em;
+}
+.mypointer {
+  cursor: pointer;
+  font-size: 2em;
+  transform: rotate(270deg);
+  color: black;
+  transition: 0.3s;
+}
+.mypointer:hover {
+  transform: rotate(360deg);
+  color: rgb(15, 13, 13);
+}
+.current-pointer {
+  transform: rotate(90deg);
+  color: rgb(71, 71, 71);
+}
+.form-1,
+.form-2,
+.form-3,
+.form-4,
+.form-5,
+.form-6 {
+  height: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s;
+}
+.form-show {
+  height: auto;
+  opacity: 1;
+  pointer-events: visible;
+}
+.btn {
+  position: fixed;
+  bottom: 50px;
+  left: 20px;
+  background: conic-gradient(rgb(19, 177, 239) 0%, transparent 0%);
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  z-index: 22;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.5s;
+}
+.up {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  color: black;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  border: none;
+  font-size: 2.8em;
   text-align: center;
+  cursor: pointer;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.5s;
 }
-.receipt.geepay .r-header p.price {
-  font-size: 2.4rem;
+.show {
+  display: block;
+  visibility: visible;
+  opacity: 1;
 }
-.receipt.geepay .r-header p.semi {
-  font-size: 1.5rem;
-}
-.receipt.geepay .r-header svg {
-  color: #0b5fff;
-  width: 100px;
-  align-self: center;
-  height: 100px;
-}
-.receipt.geepay.failed .r-header svg {
-  color: orangered;
-}
-.receipt.geepay .r-body {
+footer {
   display: flex;
   flex-direction: column;
-
+  align-items: center;
+  justify-content: center;
+  min-height: 70px;
+  color: black;
+  margin-top: 50px;
   text-align: center;
 }
-.receipt.geepay .r-footer {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  bottom: 100px;
-  gap: 3rem;
-}
-.receipt.geepay .r-footer > div {
-  display: flex;
-  gap: 1rem;
-}
-.receipt.geepay .r-footer button {
-  padding: 10px 15px;
-  border-radius: 20px;
+footer a {
+  color: black;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 20px;
+  cursor: pointer;
+  transition: 0.3s;
 }
-.receipt.geepay .r-footer button.blue {
-  background-color: #0b5fff;
-  border: none;
-  color: white;
+footer p {
+  display: flex;
+  gap: 0.3em;
 }
-.receipt.geepay .r-footer button:not(blue) {
-  color: #0248c9;
-  background-color: white;
+@media (max-width: 680px) {
+  #final {
+    width: 50%;
+  }
+  #gpa {
+    width: 50%;
+  }
 }
-.gray {
-  color: gray;
+@media (max-width: 400px) {
+  input {
+    width: 60%;
+  }
+  #gpa {
+    background: white;
+    color: black;
+  }
 }
-/* For Failed ========================== */
-/* GEEPAY ========================= */
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.2);
-  z-index: 50;
-  opacity: 1;
-  pointer-events: none;
+@media (max-width: 300px) {
+  .title p {
+    padding: 10px;
+    font-size: 14px;
+  }
+  .course,
+  .cu,
+  .score {
+    font-size: 14px;
+  }
+  input.score {
+    width: 50%;
+  }
+  #degree,
+  #clear,
+  #first,
+  #second,
+  #third,
+  #fourth,
+  #fifth,
+  #sixth,
+  #final {
+    font-size: 14px;
+  }
+}
+@media (max-width: 250px) {
+  .title p {
+    padding: 8px;
+    font-size: 10px;
+  }
+  .course,
+  .cu,
+  .score {
+    font-size: 10px;
+  }
+  #degree,
+  #clear,
+  #clear,
+  #first,
+  #second,
+  #third,
+  #fourth,
+  #fifth,
+  #sixth,
+  p,
+  #final {
+    font-size: 12px;
+  }
+}
+@media (max-width: 200px) {
+  pre,
+  p,
+  #degree,
+  #clear,
+  #first,
+  #second,
+  #third,
+  #fourth,
+  #fifth,
+  #sixth,
+  #final {
+    font-size: 10px;
+  }
+  .title > p {
+    background-color: transparent;
+    color: black;
+  }
+}
+@media (max-width: 150px) {
+  .deg {
+    flex-direction: column;
+  }
+  .head {
+    margin-bottom: 20px;
+  }
+  .row {
+    width: 110%;
+  }
+  pre,
+  .course {
+    font-size: 6px;
+  }
+  input.score {
+    width: 100%;
+  }
+  header {
+    justify-content: space-between;
+    gap: 0px;
+  }
+  .star {
+    height: 20px;
+    width: 20px;
+  }
+  .result {
+    flex-direction: column;
+  }
+}
+@media (max-width: 100px) {
+  .row {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .title {
+    display: none;
+  }
+  h1,
+  p.logo {
+    font-size: 15px;
+  }
+  .course,
+  .cu,
+  .score,
+  .head {
+    font-size: 18px;
+  }
+}
+
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 20px;
+}
+.table-view {
+  margin: 2em auto;
+  display: none;
+  justify-content: center;
+  opacity: 0;
+  padding: 10px;
   transition: opacity 0.3s ease;
 }
-.receipt.geepay.failed .r-header {
-  margin-top: 0px;
-  position: relative;
-  top: -100px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-.receipt.geepay.failed .r-footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
+
+.cgpa-table {
+  display: none;
+  opacity: 0;
   width: 100%;
-  z-index: 55;
-  background-color: white;
-}
-.receipt.geepay.failed .r-footer ul {
-  padding: 20px;
-  padding-left: 30px;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-.receipt.geepay.failed .r-footer .buts {
-  position: relative;
-  display: flex;
-  border-top: 1px solid gray;
-  justify-content: space-around;
-}
-.receipt.geepay.failed .r-footer .buts::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  height: 100%;
-  width: 2px;
-  background-color: gray;
-}
-.receipt.geepay.failed .r-footer .buts button {
-  border: none;
-  padding: 20px 10px;
+  max-width: 900px;
+  border-collapse: collapse;
+  background: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  margin: auto;
 }
 
-/* ICICI================== */
-.receipt.icici.failed .head,
-.receipt.paytm.failed .head {
-  justify-content: space-between;
-  padding: 0 1rem;
+.show-table {
+  opacity: 1;
+  display: table;
 }
-.receipt.icici.failed .head svg,
-.receipt.paytm.failed .head svg {
-  padding: 0;
+
+.cgpa-table th,
+.cgpa-table td {
+  border: 1px solid #e5e7eb;
+  padding: 12px 16px;
+  text-align: center;
+  font-size: 0.95rem;
+  color: #1f2937;
 }
-.receipt.icici.failed .con-alert {
+
+.cgpa-table th {
+  background-color: #1e293b;
+  color: #ffffff;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.cgpa-table .table-title {
+  font-size: 1.15rem;
+  background-color: #334155;
+  color: #f8fafc;
+  position: relative;
+  text-align: center;
+  padding: 14px 0;
+}
+
+.close-table {
   position: absolute;
-  background-color: rgba(255, 255, 255, 0.8);
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: #f87171;
+  font-weight: bold;
+  transition: color 0.2s;
+}
+.close-table:hover {
+  color: #dc2626;
+}
+
+.cgpa-table .section-head th {
+  background-color: #f1f5f9;
+  color: #111827;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.final-cgpa {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #2563eb;
+  letter-spacing: 0.5px;
+}
+
+.convert {
+  text-align: center;
+  padding: 15px 0;
+}
+
+.convert button {
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.convert button:hover {
+  background: #1d4ed8;
+  transform: scale(1.04);
+}
+
+.convert img {
+  margin-top: 15px;
   border-radius: 10px;
-  backdrop-filter: blur(4px);
-  z-index: 55;
-  max-width: 320px;
-  width: 80%;
-  text-align: center;
-  top: 55%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  margin: auto;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
 }
-.receipt.icici.failed {
-  justify-content: flex-start;
-}
-.receipt.icici.failed .r-header {
-  text-align: center;
-  padding: 20px;
-  color: rgb(76, 76, 76);
-}
-.receipt.icici.failed .r-body {
-  color: gray;
-}
-.receipt.icici.failed .r-body p {
-  padding: 10px 0;
-}
-.receipt.icici.failed .r-body p span:not(.blue) {
-  width: 180px;
-  display: inline-block;
-}
-.receipt.icici.failed .con-alert > div {
-  padding: 20px;
-}
-.receipt.icici.failed .con-alert .bottom-b {
-  border-top: 1px solid gray;
-  color: #0b5fff;
-  text-align: center;
-}
-.receipt.paytm.failed {
-  display: flex;
-  flex-direction: column;
-}
-.receipt.paytm.failed .head .flex {
-  display: flex;
-  align-items: center;
-  font-size: 1.5rem;
-}
-.receipt.paytm.failed .price-box {
-  position: relative;
-  top: 0;
-  background: #e8f6ff;
-  height: 220px;
-  border-bottom: none;
-  box-shadow: none;
-  width: 100%;
-}
-.receipt.paytm.failed .price-box svg {
-  width: 70px;
-  height: 70px;
-  color: orangered;
-}
-.receipt.paytm.failed .logo-p {
-  width: 70px;
-  height: 70px;
-}
-.receipt.paytm.failed .logo-p img {
-  width: 100%;
-  height: 100%;
-  padding: 10px;
-}
-.receipt.paytm.failed .box {
-  border: 2px dotted gray;
-  border-bottom: 0;
-  border-left: 0;
-  font-size: 14px;
-  border-right: 0;
-  border-spacing: 5px;
-  display: flex;
-  position: relative;
-  flex-direction: column;
-}
-.receipt.paytm.failed .box .up {
-  display: flex;
-  justify-content: space-between;
-  width: 90%;
-  margin: auto;
-  padding: 20px 0;
-}
-.receipt.paytm.failed .box .up:first-child {
-  border-bottom: 1px solid gray;
-  padding: 20px;
-}
-.left,
-.right,
-.rightn {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-.receipt.paytm.failed .box .rightn {
-  width: 90%;
-  margin: auto;
-  padding-bottom: 20px;
-  border-bottom: 1px solid gray;
-}
-.logo-p {
-  position: absolute;
-  top: 0;
-  border: 2px dotted gray;
-  border-top: 0;
-  border-right: 0;
-  border-left: 0;
-  border-radius: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #e8f6ff;
-}
-@media (width: 500px) {
-  .receipt.paytm .price-box .status {
-    font-size: 1.5rem;
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .cgpa-table th,
+  .cgpa-table td {
+    padding: 8px;
+    font-size: 0.85rem;
+  }
+
+  .cgpa-table {
+    min-width: unset;
+  }
+
+  .final-cgpa {
+    font-size: 1.2rem;
+  }
+
+  .convert button {
+    width: 100%;
+    margin-top: 8px;
   }
 }
