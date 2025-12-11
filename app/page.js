@@ -223,7 +223,7 @@ export default function Page() {
 
       <div className="container">
         {semesters.map((sem, semIdx) => (
-          <React.Fragment key={semIdx}>
+          <div key={semIdx}>
             <div className="point">
               <p
                 className="head"
@@ -340,7 +340,7 @@ export default function Page() {
                 </p>
               </div>
             </form>
-          </React.Fragment>
+          </div>
         ))}
       </div>
 

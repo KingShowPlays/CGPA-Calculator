@@ -17,6 +17,11 @@ body {
   width: 90%;
   margin: auto;
 }
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
 p.logo {
   font-size: 20px;
 }
@@ -304,6 +309,11 @@ footer a {
 footer p {
   display: flex;
   gap: 0.3em;
+}
+@media (max-width: 850px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
 }
 @media (max-width: 680px) {
   #final {
