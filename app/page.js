@@ -72,6 +72,11 @@ export default function Page() {
   const [imageData, setImageData] = useState("");
   // focusRefs will hold refs for every input across all semesters (flattened)
   const focusRefs = useRef([]);
+  const totalCU = semesters.flat().reduce((sum, c) => sum + c.cu, 0);
+  const cgpaValue = Math.max(0, Math.min(5, parseFloat(finalCgpa) || 0));
+  const ringRadius = 86;
+  const ringCircumference = 2 * Math.PI * ringRadius;
+  const ringOffset = ringCircumference * (1 - cgpaValue / 5);
 
   // build a flat array length once when component mounts
   useEffect(() => {
@@ -213,32 +218,135 @@ export default function Page() {
   return (
     <main>
       <section className="showcase">
-        <h1>Simple GPA calculator</h1>
-        <code>
-          This was created for <mark>Computer Science</mark> U2022, so it only
-          contains the courses offered then,{" "}
-          <b>none of your data is saved here :)</b>
-        </code>
+        <div className="hero-grid">
+          <div className="hero-copy">
+            <span className="hero-eyebrow">
+              Smart CGPA Toolkit by <sub> Kingdavid Christian</sub>
+            </span>
+            <h1>Simple GPA calculator</h1>
+            <p className="hero-sub">
+              Track each semester, see your trend, and lock your target CGPA
+              with clarity.
+            </p>
+            <code>
+              This was created for <mark>Computer Science</mark> U2022, so it
+              only contains the courses offered then,{" "}
+              <b>none of your data is saved here :)</b>
+            </code>
+          </div>
+          <div className="hero-visual" aria-hidden="true">
+            <div className="orbit-card">
+              <svg
+                className="progress-ring"
+                width="220"
+                height="220"
+                viewBox="0 0 220 220"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <defs>
+                  <linearGradient id="ringGradient" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stopColor="#2563eb" />
+                    <stop offset="100%" stopColor="#0f172a" />
+                  </linearGradient>
+                </defs>
+                <circle
+                  cx="110"
+                  cy="110"
+                  r="86"
+                  stroke="#e5e7eb"
+                  strokeWidth="14"
+                />
+                <circle
+                  className="ring-value"
+                  cx="110"
+                  cy="110"
+                  r="86"
+                  stroke="url(#ringGradient)"
+                  strokeWidth="14"
+                  strokeLinecap="round"
+                  style={{
+                    strokeDasharray: ringCircumference,
+                    strokeDashoffset: ringOffset,
+                  }}
+                />
+                <circle cx="110" cy="110" r="60" fill="#ffffff" />
+                <text
+                  x="110"
+                  y="104"
+                  textAnchor="middle"
+                  className="ring-label"
+                >
+                  CGPA
+                </text>
+                <text
+                  x="110"
+                  y="136"
+                  textAnchor="middle"
+                  className="ring-value-text"
+                >
+                  {cgpaValue.toFixed(2)}
+                </text>
+              </svg>
+              <div className="hero-stats">
+                <div>
+                  <p className="stat-title">Semesters</p>
+                  <p className="stat-value">6</p>
+                </div>
+                <div>
+                  <p className="stat-title">Total CU</p>
+                  <p className="stat-value">{totalCU}</p>
+                </div>
+                <div>
+                  <p className="stat-title">Target</p>
+                  <p className="stat-value">4.50</p>
+                </div>
+              </div>
+            </div>
+            <div className="orbit-ring"></div>
+            <div className="orbit-dot"></div>
+          </div>
+        </div>
       </section>
 
       <div className="container">
         {semesters.map((sem, semIdx) => (
-          <div key={semIdx}>
-            <div className="point">
+          <div key={semIdx} className="semester-card">
+            <div
+              className="point"
+              onClick={(e) => {
+                const formEl = document.querySelector(`.form-${semIdx + 1}`);
+                formEl?.classList.toggle("form-show");
+                const card = e.currentTarget.closest(".semester-card");
+                card?.classList.toggle("semester-open");
+              }}
+            >
               <p
                 className="head"
                 id={`form${
                   ["one", "two", "three", "four", "five", "six"][semIdx]
                 }`}
-                onClick={() => {
-                  const formEl = document.querySelector(`.form-${semIdx + 1}`);
-                  formEl?.classList.toggle("form-show");
-                }}
               >
                 Year {Math.floor(semIdx / 2) + 1} -{" "}
                 {semIdx % 2 === 0 ? "1st" : "2nd"} semester
               </p>
-              <span className="mypointer">&gt;</span>
+              <span className="mypointer" aria-hidden="true">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M6 9l6 6 6-6"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </span>
             </div>
 
             <form
@@ -487,17 +595,59 @@ export default function Page() {
         </tbody>
       </table>
 
-      <code>
-        <pre>
-          {`Classification Guide:
-──────────────────────────────
-🏅 First Class Honour   →  4.50  –  5.00
-🎖️ Second Class Upper  →  3.50  –  4.49
-🎓 Second Class Lower  →  2.40  –  3.49
-📘 Third Class         →  1.50  –  2.39
-✅ Pass                →  1.00  –  1.49`}
-        </pre>
-      </code>
+      <section className="classification">
+        <div className="classification-head">
+          <span>Classification Guide</span>
+          <p>Know where your CGPA places you.</p>
+        </div>
+        <div className="classification-grid">
+          <div className="classification-row">
+            <span className="classification-icon" aria-hidden="true">
+              <svg viewBox="0 0 20 20">
+                <path d="M10 2l2.2 4.5 5 .7-3.6 3.4.9 4.9L10 13.7 5.5 15.5l.9-4.9L2.8 7.2l5-.7L10 2z" />
+              </svg>
+            </span>
+            <span className="classification-label">First Class Honour</span>
+            <span className="classification-range">4.50 – 5.00</span>
+          </div>
+          <div className="classification-row">
+            <span className="classification-icon" aria-hidden="true">
+              <svg viewBox="0 0 20 20">
+                <path d="M10 2l2.2 4.5 5 .7-3.6 3.4.9 4.9L10 13.7 5.5 15.5l.9-4.9L2.8 7.2l5-.7L10 2z" />
+              </svg>
+            </span>
+            <span className="classification-label">Second Class Upper</span>
+            <span className="classification-range">3.50 – 4.49</span>
+          </div>
+          <div className="classification-row">
+            <span className="classification-icon" aria-hidden="true">
+              <svg viewBox="0 0 20 20">
+                <path d="M10 2l2.2 4.5 5 .7-3.6 3.4.9 4.9L10 13.7 5.5 15.5l.9-4.9L2.8 7.2l5-.7L10 2z" />
+              </svg>
+            </span>
+            <span className="classification-label">Second Class Lower</span>
+            <span className="classification-range">2.40 – 3.49</span>
+          </div>
+          <div className="classification-row">
+            <span className="classification-icon" aria-hidden="true">
+              <svg viewBox="0 0 20 20">
+                <path d="M3 7h14v9H3zM6 4h8v3H6z" />
+              </svg>
+            </span>
+            <span className="classification-label">Third Class</span>
+            <span className="classification-range">1.50 – 2.39</span>
+          </div>
+          <div className="classification-row">
+            <span className="classification-icon" aria-hidden="true">
+              <svg viewBox="0 0 20 20">
+                <path d="M8 13.5L4.5 10l1.4-1.4L8 10.7l6.1-6.1L15.5 6z" />
+              </svg>
+            </span>
+            <span className="classification-label">Pass</span>
+            <span className="classification-range">1.00 – 1.49</span>
+          </div>
+        </div>
+      </section>
 
       <div className="btn">
         <button
