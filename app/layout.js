@@ -12,7 +12,7 @@ export const metadata = {
   description:
     "Easily calculate your GPA and CGPA across all semesters. This responsive CGPA calculator helps students track their academic performance with precision.",
   keywords:
-    "cgpa calculator, gpa calculator, university result, student grade calculator, result tracker, academic performance",
+    "cgpa calculator, gpa calculator, university result, student grade calculator, result tracker, academic performance,kingdavid christian",
   robots: {
     index: true,
     follow: true,
