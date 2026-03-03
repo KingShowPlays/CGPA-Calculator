@@ -388,36 +388,40 @@ export default function Page() {
                         /\D/g,
                         ""
                       );
-                      // auto-advance if length === 2
-                      const flatIndex =
-                        semesters
-                          .slice(0, semIdx)
-                          .reduce((a, b) => a + b.length, 0) + idx;
+                      // auto-advance within the same semester only
                       if (
                         e.currentTarget.value.length === 2 &&
-                        flatIndex < focusRefs.current.length - 1
+                        idx < sem.length - 1
                       ) {
+                        const flatIndex =
+                          semesters
+                            .slice(0, semIdx)
+                            .reduce((a, b) => a + b.length, 0) + idx;
                         const nextEl = focusRefs.current[flatIndex + 1];
                         nextEl?.focus?.();
                       }
                     }}
                     onKeyDown={(e) => {
-                      const flatIndex =
-                        semesters
-                          .slice(0, semIdx)
-                          .reduce((a, b) => a + b.length, 0) + idx;
                       if (
                         e.key === "Backspace" &&
                         e.currentTarget.value.length === 0 &&
-                        flatIndex > 0
+                        idx > 0
                       ) {
+                        const flatIndex =
+                          semesters
+                            .slice(0, semIdx)
+                            .reduce((a, b) => a + b.length, 0) + idx;
                         const prevEl = focusRefs.current[flatIndex - 1];
                         prevEl?.focus?.();
                       } else if (
                         e.key === "Enter" &&
                         e.currentTarget.value.length > 0 &&
-                        flatIndex < focusRefs.current.length - 1
+                        idx < sem.length - 1
                       ) {
+                        const flatIndex =
+                          semesters
+                            .slice(0, semIdx)
+                            .reduce((a, b) => a + b.length, 0) + idx;
                         const nextEl = focusRefs.current[flatIndex + 1];
                         nextEl?.focus?.();
                       }
@@ -485,164 +489,171 @@ export default function Page() {
         </button>
       </div>
 
-      <table
-        className={`cgpa-table ${tableVisible ? "show-table" : ""}`}
-        ref={tableRef}
-      >
-        <thead>
-          <tr>
-            <th colSpan={6} className="table-title">
-              Cumulative GPA Table
-              <span
-                className="close-table"
-                onClick={() => setTableVisible(false)}
-                title="Close Table"
-              >
-                &times;
-              </span>
-            </th>
-          </tr>
-          <tr>
-            <th colSpan={2}>Year 1</th>
-            <th colSpan={2}>Year 2</th>
-            <th colSpan={2}>Year 3</th>
-          </tr>
-          <tr className="semesters">
-            <th>1st Sem</th>
-            <th>2nd Sem</th>
-            <th>1st Sem</th>
-            <th>2nd Sem</th>
-            <th>1st Sem</th>
-            <th>2nd Sem</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{gpas[0]}</td>
-            <td>{gpas[1]}</td>
-            <td>{gpas[2]}</td>
-            <td>{gpas[3]}</td>
-            <td>{gpas[4]}</td>
-            <td>{gpas[5]}</td>
-          </tr>
-
-          <tr className="section-head">
-            <th colSpan={6}>CGPA Per Session</th>
-          </tr>
-          <tr>
-            <td colSpan={2}>
-              {((parseFloat(gpas[0]) + parseFloat(gpas[1]) || 0) / 2).toFixed(
-                3
-              )}
-            </td>
-            <td colSpan={2}>
-              {((parseFloat(gpas[2]) + parseFloat(gpas[3]) || 0) / 2).toFixed(
-                3
-              )}
-            </td>
-            <td colSpan={2}>
-              {((parseFloat(gpas[4]) + parseFloat(gpas[5]) || 0) / 2).toFixed(
-                3
-              )}
-            </td>
-          </tr>
-
-          <tr className="section-head">
-            <th colSpan={6}>Final CGPA</th>
-          </tr>
-          <tr>
-            <td className="final-cgpa" colSpan={6}>
-              {finalCgpa}
-            </td>
-          </tr>
-
-          <tr>
-            <td colSpan={6}>
-              <div className="convert">
-                <button
-                  onClick={(e) => {
-                    e.preventDefault();
-                    captureTable();
-                  }}
+      <div className="table-scroll">
+        <table
+          className={`cgpa-table ${tableVisible ? "show-table" : ""}`}
+          ref={tableRef}
+        >
+          <thead>
+            <tr>
+              <th colSpan={6} className="table-title">
+                Cumulative GPA Table
+                <span
+                  className="close-table"
+                  onClick={() => setTableVisible(false)}
+                  title="Close Table"
                 >
-                  Convert to Image
-                </button>
-                &nbsp;
-                <button
-                  id="shareButton"
-                  style={{ display: imageData ? "inline-block" : "none" }}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    shareImage();
-                  }}
-                >
-                  Share Image
-                </button>
-                <br />
-                {imageData && (
-                  <img
-                    id="tableImage"
-                    width={300}
-                    height={300}
-                    style={{ marginTop: 10 }}
-                    src={imageData}
-                    alt="table"
-                  />
+                  &times;
+                </span>
+              </th>
+            </tr>
+            <tr>
+              <th colSpan={2}>Year 1</th>
+              <th colSpan={2}>Year 2</th>
+              <th colSpan={2}>Year 3</th>
+            </tr>
+            <tr className="semesters">
+              <th>1st Sem</th>
+              <th>2nd Sem</th>
+              <th>1st Sem</th>
+              <th>2nd Sem</th>
+              <th>1st Sem</th>
+              <th>2nd Sem</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{gpas[0]}</td>
+              <td>{gpas[1]}</td>
+              <td>{gpas[2]}</td>
+              <td>{gpas[3]}</td>
+              <td>{gpas[4]}</td>
+              <td>{gpas[5]}</td>
+            </tr>
+
+            <tr className="section-head">
+              <th colSpan={6}>CGPA Per Session</th>
+            </tr>
+            <tr>
+              <td colSpan={2}>
+                {((parseFloat(gpas[0]) + parseFloat(gpas[1]) || 0) / 2).toFixed(
+                  3
                 )}
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+              </td>
+              <td colSpan={2}>
+                {((parseFloat(gpas[2]) + parseFloat(gpas[3]) || 0) / 2).toFixed(
+                  3
+                )}
+              </td>
+              <td colSpan={2}>
+                {((parseFloat(gpas[4]) + parseFloat(gpas[5]) || 0) / 2).toFixed(
+                  3
+                )}
+              </td>
+            </tr>
+
+            <tr className="section-head">
+              <th colSpan={6}>Final CGPA</th>
+            </tr>
+            <tr>
+              <td className="final-cgpa" colSpan={6}>
+                {finalCgpa}
+              </td>
+            </tr>
+
+            <tr>
+              <td colSpan={6}>
+                <div className="convert">
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      captureTable();
+                    }}
+                  >
+                    Convert to Image
+                  </button>
+                  &nbsp;
+                  <button
+                    id="shareButton"
+                    style={{ display: imageData ? "inline-block" : "none" }}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      shareImage();
+                    }}
+                  >
+                    Share Image
+                  </button>
+                  <br />
+                  {imageData && (
+                    <img
+                      id="tableImage"
+                      width={300}
+                      height={300}
+                      style={{ marginTop: 10 }}
+                      src={imageData}
+                      alt="table"
+                    />
+                  )}
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
       <section className="classification">
         <div className="classification-head">
-          <span>Classification Guide</span>
-          <p>Know where your CGPA places you.</p>
+          <div className="classification-title">
+            <span>Classification Guide</span>
+            <p>Know where your CGPA places you.</p>
+          </div>
+          <svg
+            className="classification-spark"
+            width="84"
+            height="84"
+            viewBox="0 0 84 84"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <defs>
+              <linearGradient id="sparkGradient" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stopColor="#2563eb" />
+                <stop offset="100%" stopColor="#0f172a" />
+              </linearGradient>
+            </defs>
+            <circle cx="42" cy="42" r="36" fill="url(#sparkGradient)" opacity="0.1" />
+            <path
+              d="M42 18l6.4 12.8 14.1 2-10.2 9.8 2.4 14-12.7-6.7-12.7 6.7 2.4-14-10.2-9.8 14.1-2L42 18z"
+              fill="url(#sparkGradient)"
+            />
+            <path
+              d="M16 58c6 2 13 3 26 3s20-1 26-3"
+              stroke="#2563eb"
+              strokeWidth="2"
+              strokeLinecap="round"
+              opacity="0.6"
+            />
+          </svg>
         </div>
         <div className="classification-grid">
           <div className="classification-row">
-            <span className="classification-icon" aria-hidden="true">
-              <svg viewBox="0 0 20 20">
-                <path d="M10 2l2.2 4.5 5 .7-3.6 3.4.9 4.9L10 13.7 5.5 15.5l.9-4.9L2.8 7.2l5-.7L10 2z" />
-              </svg>
-            </span>
             <span className="classification-label">First Class Honour</span>
             <span className="classification-range">4.50 – 5.00</span>
           </div>
           <div className="classification-row">
-            <span className="classification-icon" aria-hidden="true">
-              <svg viewBox="0 0 20 20">
-                <path d="M10 2l2.2 4.5 5 .7-3.6 3.4.9 4.9L10 13.7 5.5 15.5l.9-4.9L2.8 7.2l5-.7L10 2z" />
-              </svg>
-            </span>
             <span className="classification-label">Second Class Upper</span>
             <span className="classification-range">3.50 – 4.49</span>
           </div>
           <div className="classification-row">
-            <span className="classification-icon" aria-hidden="true">
-              <svg viewBox="0 0 20 20">
-                <path d="M10 2l2.2 4.5 5 .7-3.6 3.4.9 4.9L10 13.7 5.5 15.5l.9-4.9L2.8 7.2l5-.7L10 2z" />
-              </svg>
-            </span>
             <span className="classification-label">Second Class Lower</span>
             <span className="classification-range">2.40 – 3.49</span>
           </div>
           <div className="classification-row">
-            <span className="classification-icon" aria-hidden="true">
-              <svg viewBox="0 0 20 20">
-                <path d="M3 7h14v9H3zM6 4h8v3H6z" />
-              </svg>
-            </span>
             <span className="classification-label">Third Class</span>
             <span className="classification-range">1.50 – 2.39</span>
           </div>
           <div className="classification-row">
-            <span className="classification-icon" aria-hidden="true">
-              <svg viewBox="0 0 20 20">
-                <path d="M8 13.5L4.5 10l1.4-1.4L8 10.7l6.1-6.1L15.5 6z" />
-              </svg>
-            </span>
             <span className="classification-label">Pass</span>
             <span className="classification-range">1.00 – 1.49</span>
           </div>
